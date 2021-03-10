@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Posts
 {
+    // colocando constantes
+    const REGISTO_SUCESSO = 'Operação realizada com sucesso!';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -28,7 +31,7 @@ class Posts
     private $likes;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $foto;
 
@@ -53,6 +56,12 @@ class Posts
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
      */
     private $user;
+
+    // construtor
+    public function __construct(){
+        $this->likes='';
+        $this->data_publicacao = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -117,6 +126,38 @@ class Posts
         $this->conteudo = $conteudo;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    /**
+     * @param mixed $comentarios
+     */
+    public function setComentarios($comentarios): void
+    {
+        $this->comentarios = $comentarios;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
     }
 
    

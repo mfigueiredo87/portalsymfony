@@ -11,6 +11,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    // colocando constantes
+    const REGISTO_SUCESSO = 'Operação realizada com sucesso!';
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -60,7 +62,17 @@ class User implements UserInterface
      */
     private $posts;
 
+    // criando um construtor
 
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->banido = false;
+        $this->roles = ['ROLE_USER'];
+    }
+    
     public function getId(): ?int
     {
         return $this->id;

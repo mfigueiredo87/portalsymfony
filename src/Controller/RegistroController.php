@@ -21,13 +21,11 @@ class RegistroController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $user->setBanido(banido: false);
-            $user->setRoles(['ROLE_USER']);
-//          <!--Encriptando a senha-->
+          //<!--Encriptando a senha-->
             $user->setPassword($passwordEncoder->encodePassword($user,$form['password']->getData()));
             $em ->persist($user);
             $em ->flush();
-            $this->addFlash('exito',message:'Operação realizada com sucesso!');
+            $this->addFlash('exito',message:User::REGISTO_SUCESSO);
             return $this->redirectToRoute(route:'registro');
         }
         
