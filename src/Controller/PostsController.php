@@ -55,4 +55,23 @@ class PostsController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+//    metodo para ver post especifico por id
+        #[Route('/post/{id}', name: 'verPost')]
+        public function verPost($id){
+            $em = $this->getDoctrine()->getManager();
+            $post = $em->getRepository(Posts::class)->find($id);
+            return $this->render('posts/verPost.html.twig',['post'=>$post]);
+    }
+
+//    Posts de usuario especifico ou logado
+    #[Route('/meusPosts', name: 'meusPosts')]
+    public function meusPosts(){
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $posts = $em->getRepository(Posts::class)->findBy(['user'=>$user]);
+        return $this->render('posts/meusPosts.html.twig',['posts'=>$posts]);
+
+    }
+
 }
