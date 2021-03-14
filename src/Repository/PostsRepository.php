@@ -23,8 +23,9 @@ class PostsRepository extends ServiceEntityRepository
     public function BuscarTodosPosts(){
         return $this->getEntityManager()
             ->createQuery(dql: '
-            SELECT post.id, post.titulo, post.foto, post.data_publicacao, post.conteudo
-            From App:Posts post');
+            SELECT post.id, post.titulo, post.foto, post.data_publicacao, post.conteudo,
+            user.nome From App:Posts post
+            JOIN post.user user');
 
     }
 
