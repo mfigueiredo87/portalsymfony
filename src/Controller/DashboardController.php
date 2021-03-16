@@ -27,7 +27,7 @@ class DashboardController extends AbstractController
 //        $post = $em->getRepository(Posts::class)->find(5);
 //        Filtrar por um valor especifico
 //        $postF = $em->getRepository(Posts::class)->findOneBy(['titulo'=>'Linguagem C']);
-//        Filtar por alguns criterios
+//        Filtrar por alguns criterios
 //        $postCriterios = $em->getRepository(Posts::class)->findBy(['likes'=>'']);
 
 //        Paginacao
