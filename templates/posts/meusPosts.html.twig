@@ -4,13 +4,15 @@
 
 {% block body %}
 {{ parent ()}}
-    {{ dump(posts) }}
+{#    {{ dump(posts) }}#}
+    
        <div class="container bg-white rounded my-3 p-4">
-        <div class="d-flex bd-highlight">
+           {% for post in posts %}
+           <div class="d-flex bd-highlight">
             <div class="p-2 flex-grow-1 bd-highlight">
-                <h3>{{ posts.titulo }}</h3>
+                <h3>{{ post.titulo }}</h3>
                 <div class="my-3" style="color:#3282b8;">
-                    <i class="fa fa-thumbs-up"></i><strong> # Likes</strong>
+                    <i class="fa fa-thumbs-up"></i><strong> 1 Likes</strong>
                 </div>
                 <div style="color:#c3f584;">
                     <i class="far fa-clock"></i> <strong>Data de Publicação: {{ post.datapublicacao | date('d-m-Y')}}</strong>
@@ -23,9 +25,15 @@
             </div>
         </div>
         <hr>
-        <div class="text-justify my-3">
-            {{ post.conteudo }}
+
+        <div class="alert alert-light" role="alert">
+        {{ post.conteudo }}
         </div>
+        {# <div class="text-justify my-3">
+           <p> {{ post.conteudo }}</p>
+        </div> #}
+           {% endfor%}
     </div>
+    
 {% endblock %}
 

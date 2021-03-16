@@ -3,6 +3,7 @@
 {% block title %}{{parent()}} - Registar Post{% endblock %}
 
 {% block body %}
+    {{ parent ()}}
     {% for message in app.flashes('exito') %}
         <div class="alert alert-success">
             {{ message }}
